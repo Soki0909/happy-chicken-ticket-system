@@ -223,13 +223,11 @@ class Ticket {
      */
     static async resetAll() {
         try {
-            await transaction(async () => {
-                // 全チケットを削除
-                await query('DELETE FROM tickets');
-                
-                // カウンターをリセット
-                await query('UPDATE ticket_counter SET current_number = 0 WHERE id = 1');
-            });
+            // 全チケットを削除
+            await query('DELETE FROM tickets');
+            
+            // カウンターをリセット
+            await query('UPDATE ticket_counter SET current_number = 0 WHERE id = 1');
 
             console.log('🔄 All tickets have been reset');
             return true;

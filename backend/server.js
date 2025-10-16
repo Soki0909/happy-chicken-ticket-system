@@ -56,10 +56,18 @@ app.get('/health', async (req, res) => {
     }
 });
 
+// Import API routes
+const ticketsRouter = require('./src/routes/tickets');
+const adminRouter = require('./src/routes/admin');
+
+// API routes
+app.use('/api/tickets', ticketsRouter);
+app.use('/api/admin', adminRouter);
+
 // Import Ticket model for testing
 const Ticket = require('./src/models/ticket');
 
-// Temporary test endpoint
+// Temporary test endpoint (keep for debugging)
 app.get('/api/test/ticket', async (req, res) => {
     try {
         // Create a test ticket
@@ -76,10 +84,6 @@ app.get('/api/test/ticket', async (req, res) => {
         });
     }
 });
-
-// API routes will be added here later
-// app.use('/api/tickets', require('./src/routes/tickets'));
-// app.use('/api/admin', require('./src/routes/admin'));
 
 // Serve frontend for any non-API routes
 app.get('*', (req, res) => {
