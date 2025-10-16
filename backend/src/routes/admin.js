@@ -4,29 +4,39 @@ const Ticket = require('../models/ticket');
 
 /**
  * GET /api/admin/tickets
- * 有効な番号一覧取得（管理画面用）
+ * 全チケット一覧取得（管理画面用）
  */
 router.get('/tickets', async (req, res) => {
     try {
-        console.log('📋 Admin: Active tickets list requested');
+        console.log('📋 Admin: All tickets list requested');
         
         // 有効なチケット一覧を取得
         const activeTickets = await Ticket.findActive();
         
-        console.log(`📊 Found ${activeTickets.length} active tickets`);
+        // 完了チケット一覧を取得
+        const completedTickets = await Ticket.findCompleted();
+        
+        console.log(`📊 Found ${activeTickets.length} active tickets and ${completedTickets.length} completed tickets`);
         
         res.json({
             success: true,
-            message: '有効な整理番号一覧を取得しました',
-            data: activeTickets,
-            count: activeTickets.length
+            message: 'チケット一覧を取得しました',
+            data: {
+                pending: activeTickets,
+                completed: completedTickets
+            },
+            count: {
+                pending: activeTickets.length,
+                completed: completedTickets.length,
+                total: activeTickets.length + completedTickets.length
+            }
         });
 
     } catch (error) {
-        console.error('❌ Admin: Error fetching active tickets:', error);
+        console.error('❌ Admin: Error fetching tickets:', error);
         res.status(500).json({
             success: false,
-            error: '整理番号一覧の取得に失敗しました',
+            error: 'チケット一覧の取得に失敗しました',
             code: 'ADMIN_TICKETS_FETCH_FAILED'
         });
     }
@@ -89,6 +99,58 @@ router.put('/tickets/:id/complete', async (req, res) => {
             success: false,
             error: '整理番号の完了処理に失敗しました',
             code: 'ADMIN_COMPLETE_FAILED'
+        });
+    }
+});
+
+/**
+ * DELETE /api/admin/tickets/:id
+ * チケットの削除（キャンセル）
+ */
+router.delete('/tickets/:id', async (req, res) => {
+    try {
+        const ticketId = parseInt(req.params.id);
+        console.log(`🗑️ Admin: Delete ticket request for ID: ${ticketId}`);
+        
+        // チケットの存在確認
+        const ticket = await Ticket.findById(ticketId);
+        
+        if (!ticket) {
+            return res.status(404).json({
+                success: false,
+                error: '指定された整理番号が見つかりません',
+                code: 'TICKET_NOT_FOUND'
+            });
+        }
+
+        // チケットを削除
+        const success = await Ticket.deleteById(ticketId);
+        
+        if (!success) {
+            return res.status(500).json({
+                success: false,
+                error: 'チケットの削除に失敗しました',
+                code: 'DELETE_FAILED'
+            });
+        }
+
+        console.log(`✅ Admin: Ticket #${ticket.ticketNumber} deleted successfully`);
+        
+        res.json({
+            success: true,
+            message: `整理番号 #${ticket.ticketNumber} を削除しました`,
+            data: {
+                id: ticketId,
+                ticketNumber: ticket.ticketNumber
+            }
+        });
+
+    } catch (error) {
+        console.error('❌ Admin: Error deleting ticket:', error);
+        res.status(500).json({
+            success: false,
+            error: 'チケットの削除処理に失敗しました',
+            code: 'ADMIN_DELETE_FAILED'
         });
     }
 });

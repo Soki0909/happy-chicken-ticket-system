@@ -16,8 +16,6 @@ class HappyChickenAdminApp {
         this.completedCount = document.getElementById('completed-count');
         this.totalCount = document.getElementById('total-count');
         this.nextNumber = document.getElementById('next-number');
-        this.currentNumber = document.getElementById('current-number');
-        this.currentStatus = document.getElementById('current-status');
         this.ticketsList = document.getElementById('tickets-list');
         this.completedList = document.getElementById('completed-list');
         this.pendingBadge = document.getElementById('pending-badge');
@@ -26,8 +24,6 @@ class HappyChickenAdminApp {
         // ボタン要素
         this.refreshAllBtn = document.getElementById('refresh-all-btn');
         this.autoRefreshToggle = document.getElementById('auto-refresh-toggle');
-        this.callNextBtn = document.getElementById('call-next-btn');
-        this.completeCurrentBtn = document.getElementById('complete-current-btn');
         this.resetSystemBtn = document.getElementById('reset-system-btn');
         this.cleanupExpiredBtn = document.getElementById('cleanup-expired-btn');
         
@@ -63,19 +59,51 @@ class HappyChickenAdminApp {
      * イベントリスナーの設定
      */
     setupEventListeners() {
+        console.log('🔧 Setting up event listeners...');
+        
+        // 要素の存在確認とデバッグログ
+        console.log('resetSystemBtn:', this.resetSystemBtn);
+        console.log('confirmDialog:', this.confirmDialog);
+        console.log('dialogConfirm:', this.dialogConfirm);
+        console.log('dialogCancel:', this.dialogCancel);
+        
         // ヘッダーボタン
-        this.refreshAllBtn.addEventListener('click', () => this.loadAllData());
-        this.autoRefreshToggle.addEventListener('click', () => this.toggleAutoRefresh());
+        if (this.refreshAllBtn) {
+            this.refreshAllBtn.addEventListener('click', () => this.loadAllData());
+        }
+        if (this.autoRefreshToggle) {
+            this.autoRefreshToggle.addEventListener('click', () => this.toggleAutoRefresh());
+        }
         
         // アクションボタン
-        this.callNextBtn.addEventListener('click', () => this.callNextTicket());
-        this.completeCurrentBtn.addEventListener('click', () => this.completeCurrentTicket());
-        this.resetSystemBtn.addEventListener('click', () => this.showResetConfirmation());
-        this.cleanupExpiredBtn.addEventListener('click', () => this.showCleanupConfirmation());
+        if (this.resetSystemBtn) {
+            this.resetSystemBtn.addEventListener('click', () => {
+                console.log('🔄 Reset button clicked!');
+                this.showResetConfirmation();
+            });
+        } else {
+            console.error('❌ resetSystemBtn not found!');
+        }
+        
+        if (this.cleanupExpiredBtn) {
+            this.cleanupExpiredBtn.addEventListener('click', () => this.showCleanupConfirmation());
+        }
         
         // ダイアログ
-        this.dialogConfirm.addEventListener('click', () => this.executeConfirmedAction());
-        this.dialogCancel.addEventListener('click', () => this.hideConfirmDialog());
+        if (this.dialogConfirm) {
+            this.dialogConfirm.addEventListener('click', () => {
+                console.log('🔄 Confirm button clicked!');
+                this.executeConfirmedAction();
+            });
+        } else {
+            console.error('❌ dialogConfirm not found!');
+        }
+        
+        if (this.dialogCancel) {
+            this.dialogCancel.addEventListener('click', () => this.hideConfirmDialog());
+        } else {
+            console.error('❌ dialogCancel not found!');
+        }
         
         // キーボードショートカット
         document.addEventListener('keydown', (e) => {
@@ -84,14 +112,6 @@ class HappyChickenAdminApp {
                     case 'r':
                         e.preventDefault();
                         this.loadAllData();
-                        break;
-                    case 'n':
-                        e.preventDefault();
-                        this.callNextTicket();
-                        break;
-                    case 'c':
-                        e.preventDefault();
-                        this.completeCurrentTicket();
                         break;
                 }
             }
@@ -155,33 +175,14 @@ class HappyChickenAdminApp {
         this.pendingBadge.textContent = this.currentTickets.length;
         this.completedBadge.textContent = this.completedTickets.length;
         
-        // 現在の番号表示の更新
-        this.updateCurrentDisplay();
+
         
         // チケットリストの更新
         this.updateTicketsList();
         this.updateCompletedList();
     }
 
-    /**
-     * 現在の番号表示の更新
-     */
-    updateCurrentDisplay() {
-        const oldestTicket = this.currentTickets.length > 0 ? this.currentTickets[0] : null;
-        
-        if (oldestTicket) {
-            this.currentNumber.textContent = oldestTicket.ticketNumber;
-            
-            const createdTime = new Date(oldestTicket.createdAt);
-            const now = new Date();
-            const waitingMinutes = Math.floor((now - createdTime) / (1000 * 60));
-            
-            this.currentStatus.textContent = `${waitingMinutes}分間待機中`;
-        } else {
-            this.currentNumber.textContent = '---';
-            this.currentStatus.textContent = '待機中の番号はありません';
-        }
-    }
+
 
     /**
      * 待機中チケットリストの更新
@@ -216,10 +217,10 @@ class HappyChickenAdminApp {
                         </div>
                     </div>
                     <div class="ticket-actions">
-                        <button class="ticket-btn complete" onclick="adminApp.completeTicket('${ticket.sessionId}')" title="完了">
+                        <button class="ticket-btn complete" onclick="adminApp.completeTicket(${ticket.id})" title="完了">
                             ✅
                         </button>
-                        <button class="ticket-btn cancel" onclick="adminApp.cancelTicket('${ticket.sessionId}')" title="キャンセル">
+                        <button class="ticket-btn cancel" onclick="adminApp.cancelTicket(${ticket.id})" title="キャンセル">
                             ❌
                         </button>
                     </div>
@@ -307,12 +308,12 @@ class HappyChickenAdminApp {
     /**
      * 指定されたチケットを完了
      */
-    async completeTicket(sessionId) {
+    async completeTicket(ticketId) {
         try {
             this.showLoading(true);
             
-            const response = await fetch(`/api/admin/tickets/${sessionId}/complete`, {
-                method: 'POST'
+            const response = await fetch(`/api/admin/tickets/${ticketId}/complete`, {
+                method: 'PUT'
             });
 
             const data = await response.json();
@@ -335,11 +336,11 @@ class HappyChickenAdminApp {
     /**
      * 指定されたチケットをキャンセル
      */
-    async cancelTicket(sessionId) {
+    async cancelTicket(ticketId) {
         try {
             this.showLoading(true);
             
-            const response = await fetch(`/api/tickets/${sessionId}`, {
+            const response = await fetch(`/api/admin/tickets/${ticketId}`, {
                 method: 'DELETE'
             });
 
@@ -364,6 +365,7 @@ class HappyChickenAdminApp {
      * システムリセットの確認表示
      */
     showResetConfirmation() {
+        console.log('🔄 showResetConfirmation called!');
         this.showConfirmDialog(
             '🔄', 
             'システムリセット',
@@ -388,11 +390,24 @@ class HappyChickenAdminApp {
      * 確認ダイアログの表示
      */
     showConfirmDialog(icon, title, message, action) {
-        this.dialogIcon.textContent = icon;
-        this.dialogTitle.textContent = title;
-        this.dialogMessage.innerHTML = message;
-        this.confirmDialog.style.display = 'flex';
-        this.confirmDialog.dataset.action = action;
+        console.log('📋 showConfirmDialog called with:', { icon, title, message, action });
+        console.log('Dialog elements:', {
+            dialogIcon: this.dialogIcon,
+            dialogTitle: this.dialogTitle,
+            dialogMessage: this.dialogMessage,
+            confirmDialog: this.confirmDialog
+        });
+        
+        if (this.dialogIcon) this.dialogIcon.textContent = icon;
+        if (this.dialogTitle) this.dialogTitle.textContent = title;
+        if (this.dialogMessage) this.dialogMessage.innerHTML = message;
+        if (this.confirmDialog) {
+            this.confirmDialog.style.display = 'flex';
+            this.confirmDialog.dataset.action = action;
+            console.log('✅ Dialog should be visible now');
+        } else {
+            console.error('❌ confirmDialog element not found!');
+        }
     }
 
     /**

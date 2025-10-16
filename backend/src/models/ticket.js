@@ -173,6 +173,37 @@ class Ticket {
     }
 
     /**
+     * 完了チケット一覧を取得（管理画面用）
+     * @returns {Array} 完了チケットのリスト
+     */
+    static async findCompleted() {
+        try {
+            const sql = `
+                SELECT * FROM tickets 
+                WHERE status = 'completed'
+                ORDER BY ticket_number DESC
+                LIMIT 50
+            `;
+            
+            const tickets = await query(sql);
+            
+            return tickets.map(ticket => ({
+                id: ticket.id,
+                ticketNumber: String(ticket.ticket_number).padStart(3, '0'),
+                sessionId: ticket.session_id,
+                status: ticket.status,
+                createdAt: ticket.created_at,
+                expiresAt: ticket.expires_at,
+                completedAt: ticket.updated_at || ticket.created_at
+            }));
+
+        } catch (error) {
+            console.error('❌ Error finding completed tickets:', error);
+            throw error;
+        }
+    }
+
+    /**
      * チケットを完了状態に更新
      * @param {number} id - チケットID
      * @returns {boolean} 更新成功フラグ
@@ -214,6 +245,29 @@ class Ticket {
 
         } catch (error) {
             console.error('❌ Error marking ticket as expired:', error);
+            throw error;
+        }
+    }
+
+    /**
+     * チケットをIDで削除
+     * @param {number} id - チケットID
+     * @returns {boolean} 削除成功フラグ
+     */
+    static async deleteById(id) {
+        try {
+            const sql = 'DELETE FROM tickets WHERE id = ?';
+            const result = await query(sql, [id]);
+            
+            if (result.affectedRows > 0) {
+                console.log(`🗑️ Ticket #${id} deleted successfully`);
+                return true;
+            }
+            
+            return false;
+
+        } catch (error) {
+            console.error('❌ Error deleting ticket:', error);
             throw error;
         }
     }

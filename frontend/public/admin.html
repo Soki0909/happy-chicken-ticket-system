@@ -82,20 +82,6 @@
             </h2>
             
             <div class="actions-grid">
-                <button id="call-next-btn" class="action-card primary">
-                    <div class="action-content">
-                        <div class="action-title">次の番号を呼び出し</div>
-                        <div class="action-desc">最も古い待機中の番号を呼び出します</div>
-                    </div>
-                </button>
-                
-                <button id="complete-current-btn" class="action-card success">
-                    <div class="action-content">
-                        <div class="action-title">現在の番号を完了</div>
-                        <div class="action-desc">現在処理中の番号を完了にします</div>
-                    </div>
-                </button>
-                
                 <button id="reset-system-btn" class="action-card danger">
                     <div class="action-content">
                         <div class="action-title">システムリセット</div>
@@ -109,21 +95,6 @@
                         <div class="action-desc">期限切れの番号を削除します</div>
                     </div>
                 </button>
-            </div>
-        </section>
-
-        <!-- 現在の番号表示 -->
-        <section class="current-section">
-            <h2 class="section-title">
-                現在処理中
-            </h2>
-            
-            <div class="current-display" id="current-display">
-                <div class="current-number">
-                    <span class="number-label">番号</span>
-                    <span class="number-value" id="current-number">---</span>
-                </div>
-                <div class="current-status" id="current-status">待機中の番号はありません</div>
             </div>
         </section>
 
@@ -164,6 +135,7 @@
     <div id="confirm-dialog" class="dialog-overlay" style="display: none;">
         <div class="dialog-content">
             <div class="dialog-header">
+                <div class="dialog-icon" id="dialog-icon">❓</div>
                 <h3 class="dialog-title" id="dialog-title">確認</h3>
             </div>
             <div class="dialog-body">
