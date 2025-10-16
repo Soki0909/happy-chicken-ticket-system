@@ -13,20 +13,17 @@
     <header class="admin-header">
         <div class="header-content">
             <div class="logo-section">
-                <div class="logo">🐔</div>
                 <div class="title-section">
-                    <h1>ハッピーチキン</h1>
+                    <h1>Happy Chicken</h1>
                     <p class="subtitle">管理者画面</p>
                 </div>
             </div>
             
             <div class="header-actions">
                 <button id="refresh-all-btn" class="action-btn refresh-btn">
-                    <span class="btn-icon">🔄</span>
                     更新
                 </button>
                 <button id="auto-refresh-toggle" class="action-btn toggle-btn active">
-                    <span class="btn-icon">⏱️</span>
                     自動更新
                 </button>
             </div>
@@ -38,13 +35,11 @@
         <!-- 統計情報セクション -->
         <section class="stats-section">
             <h2 class="section-title">
-                <span class="title-icon">📊</span>
                 現在の状況
             </h2>
             
             <div class="stats-grid">
                 <div class="stat-card pending">
-                    <div class="stat-icon">⏳</div>
                     <div class="stat-content">
                         <div class="stat-number" id="pending-count">-</div>
                         <div class="stat-label">待機中</div>
@@ -52,7 +47,6 @@
                 </div>
                 
                 <div class="stat-card completed">
-                    <div class="stat-icon">✅</div>
                     <div class="stat-content">
                         <div class="stat-number" id="completed-count">-</div>
                         <div class="stat-label">完了済み</div>
@@ -60,7 +54,6 @@
                 </div>
                 
                 <div class="stat-card total">
-                    <div class="stat-icon">🎫</div>
                     <div class="stat-content">
                         <div class="stat-number" id="total-count">-</div>
                         <div class="stat-label">本日合計</div>
@@ -68,7 +61,6 @@
                 </div>
                 
                 <div class="stat-card next">
-                    <div class="stat-icon">➡️</div>
                     <div class="stat-content">
                         <div class="stat-number" id="next-number">-</div>
                         <div class="stat-label">次の番号</div>
@@ -80,13 +72,11 @@
         <!-- アクションセクション -->
         <section class="actions-section">
             <h2 class="section-title">
-                <span class="title-icon">⚡</span>
                 クイックアクション
             </h2>
             
             <div class="actions-grid">
                 <button id="call-next-btn" class="action-card primary">
-                    <div class="action-icon">📢</div>
                     <div class="action-content">
                         <div class="action-title">次の番号を呼び出し</div>
                         <div class="action-desc">最も古い待機中の番号を呼び出します</div>
@@ -94,7 +84,6 @@
                 </button>
                 
                 <button id="complete-current-btn" class="action-card success">
-                    <div class="action-icon">✅</div>
                     <div class="action-content">
                         <div class="action-title">現在の番号を完了</div>
                         <div class="action-desc">現在処理中の番号を完了にします</div>
@@ -102,7 +91,6 @@
                 </button>
                 
                 <button id="reset-system-btn" class="action-card danger">
-                    <div class="action-icon">🔄</div>
                     <div class="action-content">
                         <div class="action-title">システムリセット</div>
                         <div class="action-desc">全ての番号をリセットして1番から開始</div>
@@ -110,7 +98,6 @@
                 </button>
                 
                 <button id="cleanup-expired-btn" class="action-card warning">
-                    <div class="action-icon">🗑️</div>
                     <div class="action-content">
                         <div class="action-title">期限切れ整理</div>
                         <div class="action-desc">期限切れの番号を削除します</div>
@@ -122,7 +109,6 @@
         <!-- 現在の番号表示 -->
         <section class="current-section">
             <h2 class="section-title">
-                <span class="title-icon">🎯</span>
                 現在処理中
             </h2>
             
@@ -138,7 +124,6 @@
         <!-- 待機中リスト -->
         <section class="tickets-section">
             <h2 class="section-title">
-                <span class="title-icon">📋</span>
                 待機中の番号
                 <span class="section-badge" id="pending-badge">0</span>
             </h2>
@@ -146,7 +131,6 @@
             <div class="tickets-container">
                 <div class="tickets-list" id="tickets-list">
                     <div class="no-tickets">
-                        <div class="no-tickets-icon">📭</div>
                         <div class="no-tickets-text">現在待機中の番号はありません</div>
                     </div>
                 </div>
@@ -156,7 +140,6 @@
         <!-- 完了済みリスト -->
         <section class="completed-section">
             <h2 class="section-title">
-                <span class="title-icon">✅</span>
                 完了済み
                 <span class="section-badge" id="completed-badge">0</span>
             </h2>
@@ -164,7 +147,6 @@
             <div class="completed-container">
                 <div class="completed-list" id="completed-list">
                     <div class="no-completed">
-                        <div class="no-completed-icon">📝</div>
                         <div class="no-completed-text">まだ完了した番号はありません</div>
                     </div>
                 </div>
@@ -176,7 +158,6 @@
     <div id="confirm-dialog" class="dialog-overlay" style="display: none;">
         <div class="dialog-content">
             <div class="dialog-header">
-                <div class="dialog-icon" id="dialog-icon">⚠️</div>
                 <h3 class="dialog-title" id="dialog-title">確認</h3>
             </div>
             <div class="dialog-body">

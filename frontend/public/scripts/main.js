@@ -28,7 +28,6 @@ class HappyChickenTicketApp {
         
         // ボタン要素
         this.refreshBtn = document.getElementById('refresh-btn');
-        this.cancelBtn = document.getElementById('cancel-btn');
         this.retryBtn = document.getElementById('retry-btn');
         this.newTicketBtn = document.getElementById('new-ticket-btn');
         this.getNewTicketBtn = document.getElementById('get-new-ticket-btn');
@@ -60,7 +59,6 @@ class HappyChickenTicketApp {
      */
     setupEventListeners() {
         this.refreshBtn?.addEventListener('click', () => this.refreshTicket());
-        this.cancelBtn?.addEventListener('click', () => this.cancelTicket());
         this.retryBtn?.addEventListener('click', () => this.retryLastAction());
         this.newTicketBtn?.addEventListener('click', () => this.createNewTicket());
         this.getNewTicketBtn?.addEventListener('click', () => this.createNewTicket());
@@ -230,12 +228,6 @@ class HappyChickenTicketApp {
         this.updateTimeDisplay();
         
         this.showScreen('ticket');
-        
-        // フェードイン効果
-        this.ticketScreen.classList.add('fade-in');
-        setTimeout(() => {
-            this.ticketScreen.classList.remove('fade-in');
-        }, 500);
     }
 
     /**
@@ -324,36 +316,7 @@ class HappyChickenTicketApp {
         await this.fetchTicketData();
     }
 
-    /**
-     * チケットのキャンセル
-     */
-    async cancelTicket() {
-        if (!this.sessionId || !confirm('整理番号をキャンセルしますか？')) return;
-        
-        try {
-            console.log('❌ Cancelling ticket...');
-            
-            const response = await fetch(`/api/tickets/${this.sessionId}`, {
-                method: 'DELETE',
-            });
 
-            const data = await response.json();
-
-            if (!response.ok || !data.success) {
-                throw new Error(data.error || 'キャンセルに失敗しました');
-            }
-
-            console.log('✅ Ticket cancelled successfully');
-            
-            this.stopAutoUpdate();
-            this.clearSessionData();
-            this.showCancelledMessage();
-
-        } catch (error) {
-            console.error('❌ Error cancelling ticket:', error);
-            this.showError('キャンセルエラー', error.message);
-        }
-    }
 
     /**
      * 期限切れの処理
@@ -370,12 +333,7 @@ class HappyChickenTicketApp {
         }
     }
 
-    /**
-     * キャンセル完了メッセージの表示
-     */
-    showCancelledMessage() {
-        this.showError('キャンセル完了', '整理番号がキャンセルされました。<br>新しい番号が必要な場合は、再度取得してください。', false);
-    }
+
 
     /**
      * エラー表示
@@ -386,10 +344,10 @@ class HappyChickenTicketApp {
         
         if (!isError) {
             this.errorTitle.style.color = 'var(--happy-orange)';
-            this.errorScreen.querySelector('.error-icon').textContent = '✅';
+            this.errorScreen.querySelector('.error-icon').textContent = '○';
         } else {
             this.errorTitle.style.color = 'var(--danger-red)';
-            this.errorScreen.querySelector('.error-icon').textContent = '⚠️';
+            this.errorScreen.querySelector('.error-icon').textContent = '!';
         }
         
         this.showScreen('error');

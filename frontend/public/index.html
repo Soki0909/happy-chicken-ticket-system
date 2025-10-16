@@ -11,8 +11,7 @@
     <div class="container">
         <!-- ヘッダー部分 -->
         <div class="header">
-            <h1 class="brand-name">🐔 Happy Chicken</h1>
-            <p class="subtitle">整理番号システム</p>
+            <h1 class="brand-name">Happy Chicken</h1>
         </div>
 
         <!-- ローディング画面 -->
@@ -43,10 +42,7 @@
 
                 <div class="ticket-actions">
                     <button id="refresh-btn" class="action-btn secondary">
-                        🔄 更新
-                    </button>
-                    <button id="cancel-btn" class="action-btn danger">
-                        ❌ キャンセル
+                        更新
                     </button>
                 </div>
             </div>
@@ -55,15 +51,15 @@
         <!-- エラー画面 -->
         <div id="error-screen" class="screen" style="display: none;">
             <div class="error-display">
-                <div class="error-icon">⚠️</div>
+                <div class="error-icon">!</div>
                 <h2 class="error-title" id="error-title">エラーが発生しました</h2>
                 <p class="error-message" id="error-message">システムエラーが発生しました</p>
                 <div class="error-actions">
                     <button id="retry-btn" class="action-btn primary">
-                        🔄 再試行
+                        再試行
                     </button>
                     <button id="new-ticket-btn" class="action-btn secondary">
-                        🎫 新しい番号を取得
+                        新しい番号を取得
                     </button>
                 </div>
             </div>
@@ -72,7 +68,7 @@
         <!-- 期限切れ画面 -->
         <div id="expired-screen" class="screen" style="display: none;">
             <div class="expired-display">
-                <div class="expired-icon">⏰</div>
+                <div class="expired-icon">×</div>
                 <h2 class="expired-title">有効期限が切れました</h2>
                 <p class="expired-message">
                     整理番号の有効期限（15分）が切れました。<br>
@@ -80,7 +76,7 @@
                 </p>
                 <div class="expired-actions">
                     <button id="get-new-ticket-btn" class="action-btn primary">
-                        🎫 新しい番号を取得
+                        新しい番号を取得
                     </button>
                 </div>
             </div>
@@ -88,7 +84,7 @@
 
         <!-- フッター -->
         <div class="footer">
-            <p>🎯 商品ができましたらお声がけします</p>
+            <p>商品ができましたらお声がけします</p>
             <p class="footer-note">画面を閉じても番号は保持されます</p>
         </div>
     </div>

@@ -1,8 +1,17 @@
-/* 管理者画面専用CSS */
+/* 管理者画面専用CSS - Happy Chicken 7:2:1 色比率 */
 :root {
-    --happy-yellow: #fbd205;
-    --happy-orange: #fe8700;
-    --happy-black: #040404;
+    /* Happy Chicken ブランドカラー (7:2:1比率) */
+    --happy-yellow: #fbd205;    /* メインカラー (70%) */
+    --happy-orange: #fe8700;    /* アクセントカラー (20%) */
+    --happy-black: #040404;     /* テキスト・強調カラー (10%) */
+    
+    /* カラーバリエーション */
+    --happy-light-yellow: #fce866;
+    --happy-dark-yellow: #e6bd04;
+    --happy-light-orange: #ff9933;
+    --happy-dark-orange: #cc6d00;
+    
+    /* システムカラー */
     --success-green: #10b981;
     --danger-red: #ef4444;
     --warning-yellow: #f59e0b;
@@ -11,9 +20,19 @@
     --medium-gray: #e2e8f0;
     --dark-gray: #64748b;
     --white: #ffffff;
+    
+    /* グラデーション */
+    --gradient-main: linear-gradient(135deg, var(--happy-yellow) 70%, var(--happy-orange) 100%);
+    --gradient-yellow: linear-gradient(135deg, var(--happy-yellow) 0%, var(--happy-light-yellow) 100%);
+    --gradient-orange: linear-gradient(135deg, var(--happy-orange) 0%, var(--happy-light-orange) 100%);
+    
+    /* シャドウとエフェクト */
     --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
     --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
     --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --shadow-yellow: 0 4px 15px rgba(251, 210, 5, 0.25);
+    --shadow-orange: 0 4px 15px rgba(254, 135, 0, 0.25);
+    
     --border-radius: 8px;
     --border-radius-lg: 12px;
     --transition: all 0.2s ease-in-out;
@@ -33,10 +52,10 @@ body {
     line-height: 1.6;
 }
 
-/* ヘッダー */
+/* ヘッダー - シンプル版 */
 .admin-header {
-    background: linear-gradient(135deg, var(--happy-yellow) 0%, var(--happy-orange) 100%);
-    box-shadow: var(--shadow-md);
+    background: var(--happy-yellow);
+    border-bottom: 3px solid var(--happy-black);
     position: sticky;
     top: 0;
     z-index: 100;
@@ -63,7 +82,7 @@ body {
 }
 
 .title-section h1 {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-weight: 700;
     color: var(--happy-black);
     margin-bottom: 0.25rem;
@@ -154,40 +173,31 @@ body {
 
 .stat-card {
     background: var(--white);
-    border-radius: var(--border-radius-lg);
+    border-radius: 8px;
     padding: 1.5rem;
-    box-shadow: var(--shadow-sm);
-    border: 2px solid transparent;
-    transition: var(--transition);
+    border: 2px solid var(--happy-black);
     display: flex;
     align-items: center;
-    gap: 1rem;
-}
-
-.stat-card:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
+    justify-content: center;
+    text-align: center;
 }
 
 .stat-card.pending {
-    border-color: var(--warning-yellow);
+    background: var(--happy-yellow);
 }
 
 .stat-card.completed {
-    border-color: var(--success-green);
+    background: var(--success-green);
+    color: var(--white);
 }
 
 .stat-card.total {
-    border-color: var(--info-blue);
+    background: var(--happy-orange);
+    color: var(--white);
 }
 
 .stat-card.next {
-    border-color: var(--happy-orange);
-}
-
-.stat-icon {
-    font-size: 2rem;
-    line-height: 1;
+    background: var(--happy-white);
 }
 
 .stat-number {
@@ -212,64 +222,41 @@ body {
 
 .action-card {
     background: var(--white);
-    border: none;
-    border-radius: var(--border-radius-lg);
+    border: 2px solid var(--happy-black);
+    border-radius: 8px;
     padding: 1.5rem;
-    box-shadow: var(--shadow-sm);
     cursor: pointer;
-    transition: var(--transition);
     display: flex;
     align-items: center;
-    gap: 1rem;
-    text-align: left;
-    border: 2px solid transparent;
+    justify-content: center;
+    text-align: center;
+    transition: opacity 0.2s ease;
 }
 
 .action-card:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
+    opacity: 0.8;
 }
 
 .action-card.primary {
-    border-color: var(--info-blue);
-}
-
-.action-card.primary:hover {
-    border-color: var(--info-blue);
-    background: rgba(59, 130, 246, 0.05);
+    background: var(--happy-yellow);
 }
 
 .action-card.success {
-    border-color: var(--success-green);
-}
-
-.action-card.success:hover {
-    border-color: var(--success-green);
-    background: rgba(16, 185, 129, 0.05);
+    background: var(--success-green);
+    color: var(--white);
 }
 
 .action-card.danger {
-    border-color: var(--danger-red);
-}
-
-.action-card.danger:hover {
-    border-color: var(--danger-red);
-    background: rgba(239, 68, 68, 0.05);
+    background: var(--danger-red);
+    color: var(--white);
 }
 
 .action-card.warning {
-    border-color: var(--warning-yellow);
+    background: var(--happy-orange);
+    color: var(--white);
 }
 
-.action-card.warning:hover {
-    border-color: var(--warning-yellow);
-    background: rgba(245, 158, 11, 0.05);
-}
 
-.action-icon {
-    font-size: 2rem;
-    line-height: 1;
-}
 
 .action-title {
     font-size: 1rem;
@@ -284,14 +271,13 @@ body {
     line-height: 1.4;
 }
 
-/* 現在の番号表示 */
+/* 現在の番号表示 - シンプル版 */
 .current-display {
-    background: linear-gradient(135deg, var(--happy-yellow) 0%, var(--happy-orange) 100%);
-    border-radius: var(--border-radius-lg);
-    padding: 2rem;
+    background: var(--happy-white);
+    border-radius: 8px;
+    padding: 3rem;
     text-align: center;
-    box-shadow: var(--shadow-md);
-    border: 3px solid var(--white);
+    border: 5px solid var(--happy-black);
 }
 
 .current-number {
@@ -310,11 +296,16 @@ body {
 }
 
 .number-value {
-    font-size: 4rem;
-    font-weight: 800;
+    font-size: 8rem;
+    font-weight: 900;
     color: var(--happy-black);
-    line-height: 1;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    line-height: 0.8;
+    font-family: 'Arial Black', 'Impact', sans-serif;
+    border: 4px solid var(--happy-black);
+    border-radius: 12px;
+    padding: 30px;
+    background: var(--happy-yellow);
+    display: inline-block;
 }
 
 .current-status {
@@ -346,12 +337,7 @@ body {
     color: var(--dark-gray);
 }
 
-.no-tickets-icon,
-.no-completed-icon {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-    opacity: 0.5;
-}
+
 
 .no-tickets-text,
 .no-completed-text {
@@ -468,24 +454,14 @@ body {
 
 .dialog-content {
     background: var(--white);
-    border-radius: var(--border-radius-lg);
-    box-shadow: var(--shadow-lg);
+    border-radius: 8px;
+    border: 3px solid var(--happy-black);
     max-width: 400px;
     width: 90%;
     overflow: hidden;
-    animation: dialogSlideIn 0.2s ease-out;
 }
 
-@keyframes dialogSlideIn {
-    from {
-        opacity: 0;
-        transform: scale(0.9) translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1) translateY(0);
-    }
-}
+
 
 .dialog-header {
     padding: 1.5rem 1.5rem 1rem;
@@ -562,15 +538,13 @@ body {
 
 .notification {
     background: var(--white);
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow-lg);
+    border-radius: 8px;
+    border: 2px solid var(--happy-black);
     padding: 1rem 1.5rem;
     max-width: 400px;
     display: flex;
     align-items: center;
     gap: 1rem;
-    animation: notificationSlideIn 0.3s ease-out;
-    border-left: 4px solid var(--info-blue);
 }
 
 .notification.success {
@@ -585,16 +559,7 @@ body {
     border-left-color: var(--warning-yellow);
 }
 
-@keyframes notificationSlideIn {
-    from {
-        opacity: 0;
-        transform: translateX(100%);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
+
 
 .notification-icon {
     font-size: 1.5rem;

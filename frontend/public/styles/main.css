@@ -26,56 +26,21 @@ body {
     justify-content: center;
 }
 
-/* ヘッダー */
+/* ヘッダー - シンプル版 */
 .header {
-    background: linear-gradient(135deg, var(--happy-yellow) 0%, #f5c500 100%);
-    padding: 25px 20px;
-    border-radius: 20px;
-    margin-bottom: 30px;
-    box-shadow: 0 8px 20px rgba(251, 210, 5, 0.3);
-    position: relative;
-    overflow: hidden;
-}
-
-.header::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: repeating-linear-gradient(
-        45deg,
-        transparent,
-        transparent 10px,
-        rgba(255, 255, 255, 0.1) 10px,
-        rgba(255, 255, 255, 0.1) 20px
-    );
-    animation: shimmer 3s linear infinite;
-}
-
-@keyframes shimmer {
-    0% { transform: translateX(-100%) translateY(-100%); }
-    100% { transform: translateX(100%) translateY(100%); }
+    background: var(--happy-yellow);
+    padding: 12px 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border: 2px solid var(--happy-black);
 }
 
 .brand-name {
-    font-size: 2.8rem;
-    font-weight: 900;
+    font-size: 1.4rem;
+    font-weight: 700;
     color: var(--happy-black);
-    margin-bottom: 8px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-    position: relative;
-    z-index: 1;
-}
-
-.subtitle {
-    font-size: 1.3rem;
-    color: var(--happy-black);
-    opacity: 0.85;
-    font-weight: 600;
-    position: relative;
-    z-index: 1;
+    margin: 0;
+    text-align: center;
 }
 
 /* 画面管理 */
@@ -89,14 +54,14 @@ body {
     transition: all 0.3s ease-in-out;
 }
 
-/* ローディング画面 */
+/* ローディング画面 - シンプル版 */
 .loading-spinner {
-    width: 60px;
-    height: 60px;
-    border: 6px solid var(--happy-yellow);
+    width: 40px;
+    height: 40px;
+    border: 4px solid var(--happy-yellow);
     border-radius: 50%;
     border-top-color: var(--happy-orange);
-    animation: spin 1s ease-in-out infinite;
+    animation: spin 1s linear infinite;
     margin-bottom: 20px;
 }
 
@@ -117,79 +82,53 @@ body {
     opacity: 0.8;
 }
 
-/* チケット表示画面 */
+/* チケット表示画面 - 整理番号最優先 */
 .ticket-display {
     width: 100%;
-    max-width: 400px;
+    max-width: 500px;
 }
 
 .ticket-number-container {
-    background: linear-gradient(135deg, var(--happy-orange) 0%, #e57300 100%);
-    padding: 40px 20px;
-    border-radius: 25px;
+    background: var(--happy-white);
+    padding: 60px 40px;
+    border-radius: 12px;
     margin-bottom: 30px;
-    box-shadow: 0 12px 30px rgba(254, 135, 0, 0.4);
-    position: relative;
-    overflow: hidden;
-}
-
-.ticket-number-container::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(45deg, 
-        transparent 30%, 
-        rgba(255, 255, 255, 0.1) 50%, 
-        transparent 70%);
-    animation: shine 2s ease-in-out infinite;
-}
-
-@keyframes shine {
-    0% { transform: translateX(-100%); }
-    100% { transform: translateX(100%); }
+    border: 6px solid var(--happy-black);
+    text-align: center;
 }
 
 .ticket-label {
-    font-size: 1.1rem;
-    color: var(--happy-white);
-    margin-bottom: 15px;
+    font-size: 1.2rem;
+    color: var(--happy-black);
+    margin-bottom: 30px;
     font-weight: 600;
-    opacity: 0.9;
-    position: relative;
-    z-index: 1;
 }
 
 .ticket-number {
-    font-size: 5rem;
+    font-size: 12rem;
     font-weight: 900;
-    color: var(--happy-white);
-    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
-    margin-bottom: 10px;
-    position: relative;
-    z-index: 1;
-    font-family: 'Courier New', monospace;
-    letter-spacing: 0.1em;
+    color: var(--happy-black);
+    margin-bottom: 20px;
+    font-family: 'Arial Black', 'Impact', sans-serif;
+    letter-spacing: -0.05em;
+    line-height: 0.8;
+    text-align: center;
+    display: block;
 }
 
 .ticket-status {
-    font-size: 1.2rem;
-    color: var(--happy-white);
-    font-weight: 600;
-    position: relative;
-    z-index: 1;
+    font-size: 1.5rem;
+    color: var(--happy-black);
+    font-weight: 700;
 }
 
-/* チケット情報 */
+/* チケット情報 - シンプル版 */
 .ticket-info {
-    background: var(--happy-white);
-    border: 3px solid var(--happy-yellow);
-    border-radius: 20px;
+    background: var(--happy-yellow);
+    border: 3px solid var(--happy-black);
+    border-radius: 8px;
     padding: 25px 20px;
     margin-bottom: 30px;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
 }
 
 .time-remaining {
@@ -205,30 +144,28 @@ body {
 
 .time-display {
     font-size: 2.5rem;
-    font-weight: 700;
-    color: var(--happy-orange);
+    font-weight: 800;
+    color: var(--happy-black);
     margin-bottom: 15px;
-    font-family: 'Courier New', monospace;
+    font-family: 'Arial Black', monospace;
 }
 
 .progress-bar {
     width: 100%;
     height: 12px;
-    background: #e0e0e0;
+    background: var(--happy-white);
     border-radius: 6px;
-    overflow: hidden;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 2px solid var(--happy-black);
 }
 
 .progress-fill {
     height: 100%;
-    background: linear-gradient(90deg, var(--happy-yellow) 0%, var(--happy-orange) 100%);
-    border-radius: 6px;
+    background: var(--happy-orange);
+    border-radius: 4px;
     transition: width 0.3s ease;
-    box-shadow: 0 2px 4px rgba(254, 135, 0, 0.3);
 }
 
-/* アクションボタン */
+/* アクションボタン - シンプル版 */
 .ticket-actions {
     display: flex;
     gap: 15px;
@@ -237,37 +174,35 @@ body {
 
 .action-btn {
     padding: 12px 24px;
-    border: none;
-    border-radius: 25px;
+    border: 2px solid var(--happy-black);
+    border-radius: 6px;
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s ease;
     min-width: 120px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: all 0.2s ease;
 }
 
 .action-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    opacity: 0.8;
 }
 
 .action-btn:active {
-    transform: translateY(0);
+    transform: scale(0.98);
 }
 
 .action-btn.primary {
-    background: linear-gradient(135deg, var(--happy-orange) 0%, #e57300 100%);
+    background: var(--happy-orange);
     color: var(--happy-white);
 }
 
 .action-btn.secondary {
-    background: linear-gradient(135deg, var(--happy-yellow) 0%, #f5c500 100%);
+    background: var(--happy-yellow);
     color: var(--happy-black);
 }
 
 .action-btn.danger {
-    background: linear-gradient(135deg, var(--danger-red) 0%, #c53030 100%);
+    background: var(--danger-red);
     color: var(--happy-white);
 }
 
@@ -307,13 +242,13 @@ body {
     align-items: center;
 }
 
-/* フッター */
+/* フッター - シンプル版 */
 .footer {
-    margin-top: 40px;
+    margin-top: 30px;
     padding: 20px;
-    background: rgba(251, 210, 5, 0.1);
-    border-radius: 15px;
-    border: 2px solid rgba(251, 210, 5, 0.3);
+    background: rgba(251, 210, 5, 0.2);
+    border-radius: 8px;
+    border: 2px solid var(--happy-yellow);
 }
 
 .footer p {
@@ -330,15 +265,7 @@ body {
     opacity: 0.8;
 }
 
-/* フェードイン効果 */
-.fade-in {
-    animation: fadeIn 0.5s ease-in-out;
-}
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
 
 /* レスポンシブデザイン */
 @media (max-width: 768px) {
@@ -347,39 +274,48 @@ body {
     }
     
     .brand-name {
-        font-size: 2.2rem;
-    }
-    
-    .subtitle {
-        font-size: 1.1rem;
+        font-size: 1.2rem;
     }
     
     .ticket-number {
-        font-size: 4rem;
+        font-size: 8rem;
     }
     
     .time-display {
         font-size: 2rem;
     }
+    
+    .ticket-number-container {
+        padding: 40px 20px;
+    }
 }
 
 @media (max-width: 480px) {
     .brand-name {
-        font-size: 1.8rem;
+        font-size: 1rem;
     }
     
     .ticket-number {
-        font-size: 3.5rem;
+        font-size: 6rem;
+    }
+    
+    .time-display {
+        font-size: 1.8rem;
     }
     
     .ticket-actions {
         flex-direction: column;
         align-items: center;
+        gap: 10px;
     }
     
     .action-btn {
         width: 100%;
         max-width: 200px;
+    }
+    
+    .ticket-number-container {
+        padding: 30px 15px;
     }
 }
 
@@ -402,14 +338,8 @@ body {
 
 /* アクセシビリティ */
 @media (prefers-reduced-motion: reduce) {
-    .loading-spinner,
-    .progress-fill,
-    .shimmer,
-    .shine {
-        animation: none;
-    }
-    
-    .action-btn:hover {
-        transform: none;
+    * {
+        animation: none !important;
+        transition: none !important;
     }
 }

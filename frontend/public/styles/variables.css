@@ -1,9 +1,24 @@
 :root {
-    --happy-yellow: #fbd205;
-    --happy-orange: #fe8700;
-    --happy-black: #040404;
+    /* Happy Chicken ブランドカラー (7:2:1比率) */
+    --happy-yellow: #fbd205;    /* メインカラー (70%) */
+    --happy-orange: #fe8700;    /* アクセントカラー (20%) */
+    --happy-black: #040404;     /* テキスト・強調カラー (10%) */
+    
+    /* ベースカラー */
     --happy-white: #ffffff;
+    --happy-light-yellow: #fce866;
+    --happy-dark-yellow: #e6bd04;
+    --happy-light-orange: #ff9933;
+    --happy-dark-orange: #cc6d00;
+    
+    /* システムカラー */
     --success-green: #28a745;
     --danger-red: #dc3545;
     --warning-yellow: #ffc107;
+    --info-blue: #17a2b8;
+    
+    /* グラデーション */
+    --gradient-yellow: linear-gradient(135deg, var(--happy-yellow) 0%, var(--happy-light-yellow) 100%);
+    --gradient-orange: linear-gradient(135deg, var(--happy-orange) 0%, var(--happy-light-orange) 100%);
+    --gradient-main: linear-gradient(135deg, var(--happy-yellow) 70%, var(--happy-orange) 100%);
 }

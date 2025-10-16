@@ -29,7 +29,8 @@ class Ticket {
             
             // 有効期限を設定（15分後）
             const expiresAt = new Date();
-            expiresAt.setMinutes(expiresAt.getMinutes() + (process.env.TICKET_EXPIRY_MINUTES || 15));
+            const expiryMinutes = parseInt(process.env.TICKET_EXPIRY_MINUTES) || 15;
+            expiresAt.setMinutes(expiresAt.getMinutes() + expiryMinutes);
 
             // チケットを作成
             const insertSql = `
