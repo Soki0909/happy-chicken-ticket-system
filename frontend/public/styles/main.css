@@ -252,17 +252,35 @@ body {
 }
 
 .footer p {
-    font-size: 1rem;
     color: var(--happy-black);
-    margin-bottom: 5px;
+    margin-bottom: 8px;
     font-weight: 600;
 }
 
+/* 完了メッセージのスタイル */
+.completion-message {
+    font-size: 1.2rem !important;
+    color: var(--happy-black) !important;
+    font-weight: 700 !important;
+    margin-bottom: 12px !important;
+    text-align: center;
+}
+
+/* 重要な注意事項のスタイル */
 .footer-note {
-    font-size: 0.9rem !important;
+    font-size: 1rem !important;
     color: #666 !important;
     font-weight: 400 !important;
     opacity: 0.8;
+    text-align: center;
+}
+
+.footer-note.important-note {
+    font-size: 1.1rem !important;
+    color: var(--happy-black) !important;
+    font-weight: 600 !important;
+    opacity: 1 !important;
+    margin-top: 8px;
 }
 
 
