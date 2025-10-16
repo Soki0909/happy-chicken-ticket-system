@@ -1,4 +1,3 @@
-const { Pool } = require('pg');
 const fs = require('fs');
 const path = require('path');
 
@@ -15,6 +14,7 @@ async function initializeDatabase() {
         if (isPostgreSQL) {
             // PostgreSQL setup
             console.log('🐘 Initializing PostgreSQL connection...');
+            const { Pool } = require('pg');
             db = new Pool({
                 connectionString: DATABASE_URL,
                 ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false
