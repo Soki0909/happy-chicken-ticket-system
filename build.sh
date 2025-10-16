@@ -13,7 +13,7 @@ npm ci --only=production
 
 # Run database migrations
 echo "🗄️ Setting up database..."
-export DATABASE_URL="sqlite://./data/tickets.db"
+export DATABASE_URL="sqlite:///tmp/tickets.db"
 node -e "
 const { initializeDatabase } = require('./backend/src/utils/database');
 initializeDatabase().then(() => {
