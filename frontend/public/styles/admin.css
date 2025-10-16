@@ -1,0 +1,766 @@
+/* 管理者画面専用CSS */
+:root {
+    --happy-yellow: #fbd205;
+    --happy-orange: #fe8700;
+    --happy-black: #040404;
+    --success-green: #10b981;
+    --danger-red: #ef4444;
+    --warning-yellow: #f59e0b;
+    --info-blue: #3b82f6;
+    --light-gray: #f8fafc;
+    --medium-gray: #e2e8f0;
+    --dark-gray: #64748b;
+    --white: #ffffff;
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --border-radius: 8px;
+    --border-radius-lg: 12px;
+    --transition: all 0.2s ease-in-out;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, var(--light-gray) 0%, #f1f5f9 100%);
+    color: var(--happy-black);
+    min-height: 100vh;
+    line-height: 1.6;
+}
+
+/* ヘッダー */
+.admin-header {
+    background: linear-gradient(135deg, var(--happy-yellow) 0%, var(--happy-orange) 100%);
+    box-shadow: var(--shadow-md);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-section {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.logo {
+    font-size: 2.5rem;
+    line-height: 1;
+}
+
+.title-section h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--happy-black);
+    margin-bottom: 0.25rem;
+}
+
+.subtitle {
+    font-size: 0.875rem;
+    color: var(--happy-black);
+    opacity: 0.8;
+}
+
+.header-actions {
+    display: flex;
+    gap: 0.75rem;
+}
+
+/* ボタンスタイル */
+.action-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: var(--border-radius);
+    background: rgba(255, 255, 255, 0.2);
+    color: var(--happy-black);
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 0.875rem;
+}
+
+.action-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-1px);
+}
+
+.action-btn.active {
+    background: rgba(255, 255, 255, 0.4);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.btn-icon {
+    font-size: 1rem;
+}
+
+/* メインコンテンツ */
+.admin-main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    display: grid;
+    gap: 2rem;
+}
+
+/* セクションタイトル */
+.section-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--happy-black);
+    margin-bottom: 1rem;
+}
+
+.title-icon {
+    font-size: 1.5rem;
+}
+
+.section-badge {
+    background: var(--happy-orange);
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    min-width: 24px;
+    text-align: center;
+}
+
+/* 統計情報 */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.stat-card {
+    background: var(--white);
+    border-radius: var(--border-radius-lg);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-sm);
+    border: 2px solid transparent;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.stat-card.pending {
+    border-color: var(--warning-yellow);
+}
+
+.stat-card.completed {
+    border-color: var(--success-green);
+}
+
+.stat-card.total {
+    border-color: var(--info-blue);
+}
+
+.stat-card.next {
+    border-color: var(--happy-orange);
+}
+
+.stat-icon {
+    font-size: 2rem;
+    line-height: 1;
+}
+
+.stat-number {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--happy-black);
+    line-height: 1;
+}
+
+.stat-label {
+    font-size: 0.875rem;
+    color: var(--dark-gray);
+    font-weight: 500;
+}
+
+/* アクションカード */
+.actions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+}
+
+.action-card {
+    background: var(--white);
+    border: none;
+    border-radius: var(--border-radius-lg);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-sm);
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-align: left;
+    border: 2px solid transparent;
+}
+
+.action-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.action-card.primary {
+    border-color: var(--info-blue);
+}
+
+.action-card.primary:hover {
+    border-color: var(--info-blue);
+    background: rgba(59, 130, 246, 0.05);
+}
+
+.action-card.success {
+    border-color: var(--success-green);
+}
+
+.action-card.success:hover {
+    border-color: var(--success-green);
+    background: rgba(16, 185, 129, 0.05);
+}
+
+.action-card.danger {
+    border-color: var(--danger-red);
+}
+
+.action-card.danger:hover {
+    border-color: var(--danger-red);
+    background: rgba(239, 68, 68, 0.05);
+}
+
+.action-card.warning {
+    border-color: var(--warning-yellow);
+}
+
+.action-card.warning:hover {
+    border-color: var(--warning-yellow);
+    background: rgba(245, 158, 11, 0.05);
+}
+
+.action-icon {
+    font-size: 2rem;
+    line-height: 1;
+}
+
+.action-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--happy-black);
+    margin-bottom: 0.25rem;
+}
+
+.action-desc {
+    font-size: 0.875rem;
+    color: var(--dark-gray);
+    line-height: 1.4;
+}
+
+/* 現在の番号表示 */
+.current-display {
+    background: linear-gradient(135deg, var(--happy-yellow) 0%, var(--happy-orange) 100%);
+    border-radius: var(--border-radius-lg);
+    padding: 2rem;
+    text-align: center;
+    box-shadow: var(--shadow-md);
+    border: 3px solid var(--white);
+}
+
+.current-number {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.number-label {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--happy-black);
+    opacity: 0.8;
+}
+
+.number-value {
+    font-size: 4rem;
+    font-weight: 800;
+    color: var(--happy-black);
+    line-height: 1;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.current-status {
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: var(--happy-black);
+    opacity: 0.9;
+}
+
+/* チケットリスト */
+.tickets-container,
+.completed-container {
+    background: var(--white);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+}
+
+.tickets-list,
+.completed-list {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.no-tickets,
+.no-completed {
+    padding: 3rem 2rem;
+    text-align: center;
+    color: var(--dark-gray);
+}
+
+.no-tickets-icon,
+.no-completed-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    opacity: 0.5;
+}
+
+.no-tickets-text,
+.no-completed-text {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.ticket-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--medium-gray);
+    transition: var(--transition);
+}
+
+.ticket-item:hover {
+    background: rgba(251, 210, 5, 0.05);
+}
+
+.ticket-item:last-child {
+    border-bottom: none;
+}
+
+.ticket-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.ticket-number {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--happy-orange);
+    min-width: 60px;
+    text-align: right;
+}
+
+.ticket-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.ticket-time {
+    font-size: 0.875rem;
+    color: var(--dark-gray);
+}
+
+.ticket-remaining {
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 0.25rem 0.5rem;
+    border-radius: 12px;
+    background: var(--warning-yellow);
+    color: var(--white);
+    display: inline-block;
+    min-width: fit-content;
+}
+
+.ticket-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.ticket-btn {
+    padding: 0.5rem;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 1rem;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ticket-btn.complete {
+    background: var(--success-green);
+    color: var(--white);
+}
+
+.ticket-btn.complete:hover {
+    background: #059669;
+    transform: scale(1.1);
+}
+
+.ticket-btn.cancel {
+    background: var(--danger-red);
+    color: var(--white);
+}
+
+.ticket-btn.cancel:hover {
+    background: #dc2626;
+    transform: scale(1.1);
+}
+
+/* ダイアログ */
+.dialog-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    backdrop-filter: blur(4px);
+}
+
+.dialog-content {
+    background: var(--white);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-lg);
+    max-width: 400px;
+    width: 90%;
+    overflow: hidden;
+    animation: dialogSlideIn 0.2s ease-out;
+}
+
+@keyframes dialogSlideIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9) translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.dialog-header {
+    padding: 1.5rem 1.5rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.dialog-icon {
+    font-size: 2rem;
+}
+
+.dialog-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--happy-black);
+}
+
+.dialog-body {
+    padding: 0 1.5rem 1.5rem;
+}
+
+.dialog-message {
+    font-size: 1rem;
+    color: var(--dark-gray);
+    line-height: 1.5;
+}
+
+.dialog-actions {
+    padding: 1rem 1.5rem 1.5rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+}
+
+.dialog-btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: var(--border-radius);
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+    min-width: 80px;
+}
+
+.dialog-btn.cancel {
+    background: var(--medium-gray);
+    color: var(--dark-gray);
+}
+
+.dialog-btn.cancel:hover {
+    background: #cbd5e1;
+}
+
+.dialog-btn.confirm {
+    background: var(--happy-orange);
+    color: var(--white);
+}
+
+.dialog-btn.confirm:hover {
+    background: #ea580c;
+}
+
+/* 通知システム */
+.notification-container {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1100;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.notification {
+    background: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-lg);
+    padding: 1rem 1.5rem;
+    max-width: 400px;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    animation: notificationSlideIn 0.3s ease-out;
+    border-left: 4px solid var(--info-blue);
+}
+
+.notification.success {
+    border-left-color: var(--success-green);
+}
+
+.notification.error {
+    border-left-color: var(--danger-red);
+}
+
+.notification.warning {
+    border-left-color: var(--warning-yellow);
+}
+
+@keyframes notificationSlideIn {
+    from {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.notification-icon {
+    font-size: 1.5rem;
+}
+
+.notification-content {
+    flex: 1;
+}
+
+.notification-title {
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    color: var(--happy-black);
+}
+
+.notification-message {
+    font-size: 0.875rem;
+    color: var(--dark-gray);
+}
+
+.notification-close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.25rem;
+    color: var(--dark-gray);
+    font-size: 1.25rem;
+    line-height: 1;
+}
+
+.notification-close:hover {
+    color: var(--happy-black);
+}
+
+/* ローディングオーバーレイ */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    backdrop-filter: blur(2px);
+}
+
+.loading-content {
+    text-align: center;
+}
+
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid var(--medium-gray);
+    border-top: 4px solid var(--happy-orange);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 1rem;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading-text {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--happy-black);
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 768px) {
+    .header-content {
+        padding: 1rem;
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+    
+    .admin-main {
+        padding: 1rem;
+        gap: 1.5rem;
+    }
+    
+    .stats-grid,
+    .actions-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .action-card {
+        padding: 1rem;
+    }
+    
+    .current-display {
+        padding: 1.5rem;
+    }
+    
+    .number-value {
+        font-size: 3rem;
+    }
+    
+    .notification-container {
+        top: 0.5rem;
+        right: 0.5rem;
+        left: 0.5rem;
+    }
+    
+    .notification {
+        max-width: none;
+    }
+    
+    .dialog-content {
+        margin: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .ticket-item {
+        padding: 0.75rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
+    
+    .ticket-info {
+        width: 100%;
+    }
+    
+    .ticket-actions {
+        align-self: flex-end;
+    }
+    
+    .dialog-actions {
+        flex-direction: column;
+    }
+    
+    .dialog-btn {
+        width: 100%;
+    }
+}
+
+/* 高コントラストモード対応 */
+@media (prefers-contrast: high) {
+    .stat-card,
+    .action-card,
+    .tickets-container,
+    .completed-container {
+        border: 2px solid var(--happy-black);
+    }
+    
+    .current-display {
+        border: 3px solid var(--happy-black);
+    }
+}
+
+/* 動きを減らす設定 */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
