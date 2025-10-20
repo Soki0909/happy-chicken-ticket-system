@@ -28,8 +28,8 @@
 
 ## 🖼️ 画面イメージ
 
-![発券画面（スマホ表示例）](docs/images/happy-chicken-ticket-system.onrender.com_(iPhone%2012%20Pro).png)
-![管理者画面（iPad表示例）](docs/images/happy-chicken-ticket-system.onrender.com_admin.html(iPad%20Air).png)
+<img src="docs/images/happy-chicken-ticket-system.onrender.com_(iPhone%2012%20Pro).png" alt="発券画面（スマホ表示例）" height="320" />
+<img src="docs/images/happy-chicken-ticket-system.onrender.com_admin.html(iPad%20Air).png" alt="管理者画面（iPad表示例）" height="320" />
 
 ## 🎯 特徴
 
